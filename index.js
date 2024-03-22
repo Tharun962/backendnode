@@ -8,7 +8,7 @@ const cookieParser=require('cookie-parser');
 
 app.use(cors({
     credentials:true,
-    origin:process.env.ORIGIN
+    origin:"https://backendnode-6l8v.onrender.com"
 }));
 
 app.use(express.urlencoded({extended:true}));
