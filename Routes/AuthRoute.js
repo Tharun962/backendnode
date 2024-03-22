@@ -21,7 +21,7 @@ router.post("/register",async(req,res)=>{
     const registerBody=req.body;
     try
     {
-      let user=userModel.findOne({email:body.email});
+      let user=await userModel.findOne({email:registerBody.email});
       if(user)
       {
         res.send({msg:"User already registered",register:false});
@@ -36,15 +36,16 @@ router.post("/register",async(req,res)=>{
     }
     catch(err)
     {
-        res.send({msg:err,register:false});
+        res.send({msg:"Error Occured",register:false});
     }
 });
 
 router.post("/login",async(req,res)=>{
     const loginBody=req.body;
+    console.log(loginBody);
     try
     {
-      let user=userModel.findOne({email:body.email});
+      let user=await userModel.findOne({email:loginBody.email});
       if(user)
       {
         if(user.password===loginBody.password)
@@ -64,7 +65,7 @@ router.post("/login",async(req,res)=>{
     }
     catch(err)
     {
-        res.send({msg:err,login:false});
+        res.send({msg:"ERROR occured",login:false});
     }
 });
 
